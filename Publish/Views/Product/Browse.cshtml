@@ -17,7 +17,7 @@
 <div id="CatPro">
     @foreach (var item in Model)
     {
-        var x = "http://localhost:49741/product/details/" + item.ProductId;
+        var x = "http://www.moedersbeste.nl/product/details/" + item.ProductId;
         <div class="Product1">
             <a class="ImageCl" href="@x">
                 <img src="@Html.DisplayFor(modelItem => item.Picture)" width="90px" alt="click to view details" />

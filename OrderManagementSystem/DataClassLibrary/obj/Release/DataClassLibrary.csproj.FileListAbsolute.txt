@@ -21,3 +21,10 @@ C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrar
 C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\obj\Release\DataClassLibrary.csproj.CoreCompileInputs.cache
 C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\obj\Release\DataClassLibrary.dll
 C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\obj\Release\DataClassLibrary.pdb
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\bin\Release\MvcSiteMapProvider.dll
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\bin\Release\MvcSiteMapProvider.WebActivator.dll
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\bin\Release\WebActivatorEx.dll
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\bin\Release\Microsoft.Web.Administration.dll
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\bin\Release\MvcSiteMapProvider.xml
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\bin\Release\MvcSiteMapProvider.WebActivator.xml
+C:\Users\Soraya\Documents\GitHub\IBK3SOA01\OrderManagementSystem\DataClassLibrary\obj\Release\DataClassLibrary.csprojResolveAssemblyReference.cache
