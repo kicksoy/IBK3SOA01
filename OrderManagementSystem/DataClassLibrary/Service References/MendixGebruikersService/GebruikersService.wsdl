@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" name="GebruikersService" targetNamespace="http://www.example.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.com/">
+      <xsd:element name="GetGebruiker">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Naam" type="xsd:string" />
+            <xsd:element name="Wachtwoord" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGebruikerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Result">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="Voornaam" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="250" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Achternaam" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="250" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Straat" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="250" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Huisnummer" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Postcode" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Plaats" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="300" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Land" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="300" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="TelefoonnummerPrive" nillable="true" type="xsd:long" />
+                  <xsd:element name="TelefoonnummerZakelijkIntern" nillable="true" type="xsd:long" />
+                  <xsd:element name="TelefoonnummerZakelijkExtern" nillable="true" type="xsd:long" />
+                  <xsd:element name="Emailadres" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Naam" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="FullName" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Email" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="IsLocalUser" type="xsd:boolean" />
+                  <xsd:element name="Name" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="100" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Password" nillable="true" type="xsd:string" />
+                  <xsd:element name="LastLogin" nillable="true" type="xsd:dateTime" />
+                  <xsd:element name="Blocked" type="xsd:boolean" />
+                  <xsd:element name="Active" type="xsd:boolean" />
+                  <xsd:element name="FailedLogins" nillable="true" type="xsd:long" />
+                  <xsd:element name="WebServiceUser" type="xsd:boolean" />
+                  <xsd:element name="IsAnonymous" type="xsd:boolean" />
+                  <xsd:element name="GebruikerId" type="xsd:long" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGebruikers">
+        <xsd:complexType>
+          <xsd:sequence />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGebruikersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Gebruiker">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="GebruikerId" type="xsd:long" />
+                  <xsd:element name="Voornaam">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="250" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Achternaam">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="250" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Straat">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="250" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Huisnummer">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Postcode">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="6" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Plaats">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="300" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Emailadres" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Naam" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Email" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Name" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="100" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Gebruiker_Functie" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" name="Functie">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="Naam" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="300" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                              <xsd:element name="Omschrijving" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="300" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="Gebruiker_Afdeling" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" name="Afdeling">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="Naam" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="200" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                              <xsd:element name="Omschrijving" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="200" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetGebruikerRequest">
+    <wsdl:part name="parameters" element="tns:GetGebruiker" />
+  </wsdl:message>
+  <wsdl:message name="GetGebruikerResponse">
+    <wsdl:part name="result" element="tns:GetGebruikerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGebruikersRequest">
+    <wsdl:part name="parameters" element="tns:GetGebruikers" />
+  </wsdl:message>
+  <wsdl:message name="GetGebruikersResponse">
+    <wsdl:part name="result" element="tns:GetGebruikersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GebruikersServicePortType">
+    <wsdl:operation name="GetGebruiker">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetGebruikerRequest" />
+      <wsdl:output message="tns:GetGebruikerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGebruikers">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetGebruikersRequest" />
+      <wsdl:output message="tns:GetGebruikersResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GebruikersServiceSoap" type="tns:GebruikersServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetGebruiker">
+      <soap:operation soapAction="http://www.example.com/GetGebruiker" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGebruikers">
+      <soap:operation soapAction="http://www.example.com/GetGebruikers" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GebruikersService">
+    <wsdl:port name="GebruikersServicePort" binding="tns:GebruikersServiceSoap">
+      <soap:address location="https://gebruikers.mxapps.io/ws/GebruikersService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

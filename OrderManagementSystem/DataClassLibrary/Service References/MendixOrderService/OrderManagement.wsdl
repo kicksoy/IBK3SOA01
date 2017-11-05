@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" name="OrderManagement" targetNamespace="http://www.example.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.com/">
+      <xsd:element name="GetOrderVoorGebuiker">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="GebruikerId" type="xsd:long" />
+            <xsd:element name="OrderStatus">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="InWinkelwagen" />
+                  <xsd:enumeration value="Besteld" />
+                  <xsd:enumeration value="Verstuurd" />
+                  <xsd:enumeration value="Ontvangen" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetOrderVoorGebuikerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Order">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="OrderNummer" type="xsd:long" />
+                  <xsd:element name="OrderDatum" type="xsd:dateTime" />
+                  <xsd:element name="OrderStatus">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="InWinkelwagen" />
+                        <xsd:enumeration value="Besteld" />
+                        <xsd:enumeration value="Verstuurd" />
+                        <xsd:enumeration value="Ontvangen" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="GebruikerId" type="xsd:long" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetOrderRegels">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="OrderNummer" type="xsd:long" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetOrderRegelsResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OrderRegel">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="ArtikelId" type="xsd:long" />
+                  <xsd:element name="LeverancierId" type="xsd:long" />
+                  <xsd:element name="Verkoopprijs" type="xsd:decimal" />
+                  <xsd:element name="Aantal" type="xsd:long" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetOrderVoorGebuikerRequest">
+    <wsdl:part name="parameters" element="tns:GetOrderVoorGebuiker" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderVoorGebuikerResponse">
+    <wsdl:part name="result" element="tns:GetOrderVoorGebuikerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderRegelsRequest">
+    <wsdl:part name="parameters" element="tns:GetOrderRegels" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderRegelsResponse">
+    <wsdl:part name="result" element="tns:GetOrderRegelsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OrderManagementPortType">
+    <wsdl:operation name="GetOrderVoorGebuiker">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetOrderVoorGebuikerRequest" />
+      <wsdl:output message="tns:GetOrderVoorGebuikerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderRegels">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetOrderRegelsRequest" />
+      <wsdl:output message="tns:GetOrderRegelsResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="OrderManagementSoap" type="tns:OrderManagementPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetOrderVoorGebuiker">
+      <soap:operation soapAction="http://www.example.com/GetOrderVoorGebuiker" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderRegels">
+      <soap:operation soapAction="http://www.example.com/GetOrderRegels" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="OrderManagement">
+    <wsdl:port name="OrderManagementPort" binding="tns:OrderManagementSoap">
+      <soap:address location="https://orderservice100.mxapps.io/ws/OrderManagement" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

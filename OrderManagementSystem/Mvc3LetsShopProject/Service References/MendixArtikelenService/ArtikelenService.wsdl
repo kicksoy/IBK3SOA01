@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" name="ArtikelenService" targetNamespace="http://www.example.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.com/">
+      <xsd:element name="mfGetArtikelen">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="PageSize" type="xsd:long" />
+            <xsd:element name="OffSet" type="xsd:long" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfGetArtikelenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Artikel">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="Artikelcode" nillable="true" type="xsd:long" />
+                  <xsd:element name="Omschrijving" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="65" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Verkoopprijs" nillable="true" type="xsd:decimal" />
+                  <xsd:element name="Inkoopprijs" nillable="true" type="xsd:decimal" />
+                  <xsd:element name="Startdatum" nillable="true" type="xsd:dateTime" />
+                  <xsd:element name="Einddatum" nillable="true" type="xsd:dateTime" />
+                  <xsd:element name="Status" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Actief" />
+                        <xsd:enumeration value="Inactief" />
+                        <xsd:enumeration value="Geblokkeerd" />
+                        <xsd:enumeration value="Vervallen" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Voorraad" nillable="true" type="xsd:long" />
+                  <xsd:element name="Artikelcode_Omschrijving" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Artikel_Categorie" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" name="Categorie">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="Omschrijving" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="65" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfAddArtikel">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Artikel">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="Omschrijving">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="65" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Verkoopprijs" type="xsd:decimal" />
+                  <xsd:element name="Inkoopprijs" type="xsd:decimal" />
+                  <xsd:element name="Startdatum" type="xsd:dateTime" />
+                  <xsd:element name="Einddatum" type="xsd:dateTime" />
+                  <xsd:element name="Status">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Actief" />
+                        <xsd:enumeration value="Inactief" />
+                        <xsd:enumeration value="Geblokkeerd" />
+                        <xsd:enumeration value="Vervallen" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Voorraad" type="xsd:long" />
+                  <xsd:element name="Artikelcode_Omschrijving">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfAddArtikelResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Result" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfGetCategorieen">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="PageSize" type="xsd:long" />
+            <xsd:element name="OffSet" type="xsd:long" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfGetCategorieenResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Categorie">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="Omschrijving">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="65" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfGetArtikelMetArtikelcode">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="ArtikelCode" type="xsd:long" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mfGetArtikelMetArtikelcodeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Artikel">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="Artikelcode" type="xsd:long" />
+                  <xsd:element name="Omschrijving">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="65" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Verkoopprijs" type="xsd:decimal" />
+                  <xsd:element name="Inkoopprijs" nillable="true" type="xsd:decimal" />
+                  <xsd:element name="Startdatum" nillable="true" type="xsd:dateTime" />
+                  <xsd:element name="Einddatum" nillable="true" type="xsd:dateTime" />
+                  <xsd:element name="Status" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="Actief" />
+                        <xsd:enumeration value="Inactief" />
+                        <xsd:enumeration value="Geblokkeerd" />
+                        <xsd:enumeration value="Vervallen" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Voorraad" nillable="true" type="xsd:long" />
+                  <xsd:element name="Artikelcode_Omschrijving" nillable="true">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200" />
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:element>
+                  <xsd:element name="Artikel_Eenheid" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" name="Eenheid">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="Omschrijving" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="65" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="Artikel_Afbeelding" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" name="Afbeelding">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="FileID" nillable="true" type="xsd:long" />
+                              <xsd:element name="Contents" nillable="true" type="xsd:base64Binary" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="Voorraad_Artikel" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="Voorraad">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="Aantal" nillable="true" type="xsd:long" />
+                              <xsd:element name="Datum" nillable="true" type="xsd:dateTime" />
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                  <xsd:element name="Artikel_Categorie" nillable="true">
+                    <xsd:complexType>
+                      <xsd:sequence>
+                        <xsd:element minOccurs="0" name="Categorie">
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="Omschrijving" nillable="true">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:maxLength value="65" />
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:element>
+                            </xsd:sequence>
+                          </xsd:complexType>
+                        </xsd:element>
+                      </xsd:sequence>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="mfGetArtikelenRequest">
+    <wsdl:part name="parameters" element="tns:mfGetArtikelen" />
+  </wsdl:message>
+  <wsdl:message name="mfGetArtikelenResponse">
+    <wsdl:part name="result" element="tns:mfGetArtikelenResponse" />
+  </wsdl:message>
+  <wsdl:message name="mfAddArtikelRequest">
+    <wsdl:part name="parameters" element="tns:mfAddArtikel" />
+  </wsdl:message>
+  <wsdl:message name="mfAddArtikelResponse">
+    <wsdl:part name="result" element="tns:mfAddArtikelResponse" />
+  </wsdl:message>
+  <wsdl:message name="mfGetCategorieenRequest">
+    <wsdl:part name="parameters" element="tns:mfGetCategorieen" />
+  </wsdl:message>
+  <wsdl:message name="mfGetCategorieenResponse">
+    <wsdl:part name="result" element="tns:mfGetCategorieenResponse" />
+  </wsdl:message>
+  <wsdl:message name="mfGetArtikelMetArtikelcodeRequest">
+    <wsdl:part name="parameters" element="tns:mfGetArtikelMetArtikelcode" />
+  </wsdl:message>
+  <wsdl:message name="mfGetArtikelMetArtikelcodeResponse">
+    <wsdl:part name="result" element="tns:mfGetArtikelMetArtikelcodeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ArtikelenServicePortType">
+    <wsdl:operation name="mfGetArtikelen">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:mfGetArtikelenRequest" />
+      <wsdl:output message="tns:mfGetArtikelenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="mfAddArtikel">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:mfAddArtikelRequest" />
+      <wsdl:output message="tns:mfAddArtikelResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="mfGetCategorieen">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:mfGetCategorieenRequest" />
+      <wsdl:output message="tns:mfGetCategorieenResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="mfGetArtikelMetArtikelcode">
+      <wsdl:documentation>
+      </wsdl:documentation>
+      <wsdl:input message="tns:mfGetArtikelMetArtikelcodeRequest" />
+      <wsdl:output message="tns:mfGetArtikelMetArtikelcodeResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ArtikelenServiceSoap" type="tns:ArtikelenServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="mfGetArtikelen">
+      <soap:operation soapAction="http://www.example.com/mfGetArtikelen" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mfAddArtikel">
+      <soap:operation soapAction="http://www.example.com/mfAddArtikel" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mfGetCategorieen">
+      <soap:operation soapAction="http://www.example.com/mfGetCategorieen" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="mfGetArtikelMetArtikelcode">
+      <soap:operation soapAction="http://www.example.com/mfGetArtikelMetArtikelcode" />
+      <wsdl:input>
+        <soap:body use="literal" parts="parameters" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ArtikelenService">
+    <wsdl:port name="ArtikelenServicePort" binding="tns:ArtikelenServiceSoap">
+      <soap:address location="https://artikelenservice.mxapps.io/ws/ArtikelenService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
